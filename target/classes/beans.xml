@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- map: <String, Object>  -->
+    <!-- map:   "s"  , Student对象 -->
+    <bean id="s" class="springStudy.test01.Student" ><!-- 默认单例 scope-->
+        <!-- DI:依赖注入 -->
+        <property name="id" value="100"></property>
+        <property name="name" value="张三"></property>
+        <property name="address" ref="addr" />
+    </bean>
+    <!-- spring ioc -->
+    <bean id="addr" class="springStudy.test01.Address">
+        <!-- spring di -->
+        <property name="province" value="湖南省"/>
+        <property name="city" value="衡阳市"/>
+    </bean>
+</beans>

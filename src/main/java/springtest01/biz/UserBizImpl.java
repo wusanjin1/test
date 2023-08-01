@@ -15,7 +15,7 @@ public class UserBizImpl implements UserBiz {
     private UserDao userDao;
 
     public UserBizImpl() {
-        System.out.println("userDaoImpl的构造");
+        System.out.println("userBizImpl的构造");
     }
     @Override
     public void add(String uname) {

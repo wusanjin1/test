@@ -1,4 +1,4 @@
-package springtest01;
+package springtest01.dao;
 
 import org.springframework.stereotype.Repository;
 import springtest01.dao.UserDao;
