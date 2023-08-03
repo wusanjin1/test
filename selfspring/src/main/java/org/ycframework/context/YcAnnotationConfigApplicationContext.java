@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.ycframework.annotation.*;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URL;
@@ -165,6 +166,15 @@ public class YcAnnotationConfigApplicationContext implements YcApplicationContex
         File file = new File(packagePath);
         //只取后缀名为  .class的字节码
         //写法一： 接口的匿名内部类写法
+//        File[] classFiles = file.listFiles(new FileFilter() {
+//            @Override
+//            public boolean accept(File pathname) {
+//                if (pathname.getName().endsWith(".class") || pathname.isDirectory()) {
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
 
 
         //写法二：lambda写法
