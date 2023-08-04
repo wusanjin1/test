@@ -4,11 +4,17 @@ import com.alibaba.druid.pool.DruidDataSource;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.TransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
@@ -16,6 +22,8 @@ import javax.sql.DataSource;
 @PropertySource("classpath:db.properties")
 @Data
 @Log4j2
+@EnableTransactionManagement  //启用事务管理器
+//@EnableAspectJAutoProxy   //启动动态代理
 public class DataSourceConfig  {
     //利用DI和db.properties中的内容注入
     @Value("${jdbc.username}")
@@ -31,6 +39,13 @@ public class DataSourceConfig  {
     @Value("#{T(Runtime).getRuntime().availableProcessors() * 2}")
     //spEL -> spring expresssion   language
     private int cpuCount;
+
+    @Bean
+    public TransactionManager dataSourceTransactionManage(@Autowired @Qualifier(value = "druidDataSource") DataSource ds) {
+        DataSourceTransactionManager tx = new DataSourceTransactionManager();
+        tx.setDataSource(ds);
+        return tx;
+    }
 
     //参数 ： 第三方的框架中的类，用@Bean托管
     @Bean(initMethod = "init",destroyMethod = "close")
