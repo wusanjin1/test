@@ -30,7 +30,7 @@ public class Test1 extends TestCase {
     //引入断言
     @Test
     public void testAdd() {
-        int x = 30, y = 4;
+        int x = 3, y = 4;
         Assert.assertEquals(7,x+y);
     }
 }

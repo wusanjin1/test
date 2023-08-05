@@ -13,8 +13,6 @@
         <module name="txbank" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="selfspring2" target="8" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="8" />
   </component>
 </project>
